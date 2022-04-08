@@ -1,6 +1,4 @@
 <?php $v->layout("_template");?>
-
-
     <label>
         <input type="text" value="cpf do Paciente">
     </label>
