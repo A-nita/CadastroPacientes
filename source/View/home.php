@@ -1,11 +1,22 @@
 <?php $v->layout("_template");?>
+
     <label>
         <input type="text" value="cpf do Paciente">
     </label>
 <input type="button" value="Buscar">
 
     <div class="registro">
-        <p> <?=$nome." Cpf: ".$cpf?></p>
+        <?php if(!$nome):
+            ?>
+            <p> <?=$nome." Cpf: ".$cpf?></p>
+        <?php
+        else:
+        ?>
+            <p> Usuario não encontrado</p>
+        <?php
+
+        endif;?>
+
         <input type="button"  value="Visualizar">
         <input type="button" value="Editar">
         <input type="button" value="Excluir">

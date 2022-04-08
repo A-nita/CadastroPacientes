@@ -10,10 +10,14 @@
     <link rel="stylesheet" href= <?=url("source/View/styles/style.css");?>>
 </head>
 <body>
+
+<header>
+
+</header>
 <nav class="main_nav">
 <!--    estou herdando uma sidebar??-->
     <?php if($v->section("sidebar")):
-        echo $v->sectio("sidebar");
+        echo $v->section("sidebar");
         else:
         ?>
         <a title="" href="<?=url() ?>">Home</a>
@@ -28,7 +32,7 @@
 </nav>
 
 <main class="main_content">
-    <h1></h1>
+    <!--não mudar-->
     <?= $v->section("content") ?>
 </main>
 <footer>

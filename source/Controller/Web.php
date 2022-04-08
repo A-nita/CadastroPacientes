@@ -28,7 +28,7 @@ class Web
         $url = "http://www.localhost/CadastroPacientes";
 //        require __DIR__."/../View/cadastrar.php";
 
-        $dados = ['title' => 'Anita',
+        $dados = ['title' => 'Grupo 10',
             'nome' => 'Joaquim da silva',
             'cpf' => '49297564801'];
 
