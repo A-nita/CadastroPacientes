@@ -1,3 +1,3 @@
 <?php
-define("URL_BASE", "http://www.localhost/CadastroPacientes");
-?>
+
+const URL_BASE = "http://www.localhost/CadastroPacientes";

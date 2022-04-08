@@ -1,22 +1,31 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '3c9b77f55572f08a3e55f9651f180927285d3889',
         'name' => 'a-nita/cadastro-pacientes',
         'dev' => true,
     ),
     'versions' => array(
         'a-nita/cadastro-pacientes' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '3c9b77f55572f08a3e55f9651f180927285d3889',
+            'dev_requirement' => false,
+        ),
+        'coffeecode/datalayer' => array(
+            'pretty_version' => '1.1.2',
+            'version' => '1.1.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../coffeecode/datalayer',
+            'aliases' => array(),
+            'reference' => '928012861d39b855c91485a0f1bd29d202c2fd08',
             'dev_requirement' => false,
         ),
         'coffeecode/router' => array(

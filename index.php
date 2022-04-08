@@ -11,6 +11,12 @@ $router->namespace("Source\Controller");
 
 $router->group(null);
 $router->get("/", "Facade:home");
+$router->get("/cadastrar", "Facade:cadastrar");
+$router->get("/buscar", "Facade:buscar");
+$router->get("/visualizar", "Facade:visualizar");
+$router->get("/excluir", "Facade:excluir");
+$router->get("/editar", "Facade:editar");
+
 $router->dispatch();
 
 
