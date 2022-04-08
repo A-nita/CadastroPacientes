@@ -1,0 +1,27 @@
+{
+  "name": "a-nita/cadastro-pacientes",
+  "description": "Sistema de cadstro de pacientes",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Maria Anita de Moura",
+      "email": "maria.anita@estudante.ufscar.br"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "Source\\": "source/"
+    }
+  },
+  "files": [
+    "source/Config.php"
+  ],
+
+  "require": {
+    "coffeecode/router": "1.0.*"
+  }
+}
