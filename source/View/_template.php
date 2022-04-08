@@ -17,8 +17,7 @@
         else:
         ?>
         <a title="" href="<?=url() ?>">Home</a>
-        <a title="" href="">Cadastrar Paciente</a>
-        <p><?=url("/cadastrar") ?></p>
+        <a title="" href="<?=url("cadastrar");?>">Cadastrar Paciente</a>
         <a title="" href="<?=url() ?>">Buscar Paciente</a>
 
 
@@ -29,7 +28,7 @@
 </nav>
 
 <main class="main_content">
-    <h1><?=url("/source/View/styles/style.css");?></h1>
+    <h1></h1>
     <?= $v->section("content") ?>
 </main>
 <footer>
