@@ -1,19 +1,25 @@
 <?php
 
 namespace Source\Controller;
-class Facade
+use League\Plates\Engine;
+
+class Web
 
 {
     private $view;
 
     public function __construct()
     {
-
+        $this->view = Engine::create(__DIR__ . "/../View", "php");
     }
 
     public function home($data){
         $url = "http://www.localhost/CadastroPacientes";
-        require __DIR__."/../View/home.php";
+//        require __DIR__."\..\View/home.php";
+
+        $dados = ['title' => 'Anita'];
+
+        echo $this->view->render("home", $dados);
     }
 
     public function cadastrar($data){
@@ -25,6 +31,7 @@ class Facade
         $url = "http://www.localhost/CadastroPacientes";
         require __DIR__."/../View/buscar.php";
     }
+
     public function visualizar($data){
         $url = "http://www.localhost/CadastroPacientes";
         require __DIR__."/../View/visualizacao.php";
@@ -39,6 +46,4 @@ class Facade
         $url = "http://www.localhost/CadastroPacientes";
         require __DIR__."/../View/excluir.php";
     }
-
-
 }
