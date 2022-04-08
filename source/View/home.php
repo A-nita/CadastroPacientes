@@ -1,6 +1,20 @@
 <?php $v->layout("_template");?>
 
 
+    <label>
+        <input type="text" value="cpf do Paciente">
+    </label>
+<input type="button" value="Buscar">
+
+    <div class="registro">
+        <p> <?=$nome." Cpf: ".$cpf?></p>
+        <input type="button"  value="Visualizar">
+        <input type="button" value="Editar">
+        <input type="button" value="Excluir">
+    </div>
+
+
+
 <!--<!DOCTYPE html>-->
 <!--<html lang="en">-->
 <!--<head>-->

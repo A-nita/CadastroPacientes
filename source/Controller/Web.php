@@ -17,7 +17,9 @@ class Web
         $url = "http://www.localhost/CadastroPacientes";
 //        require __DIR__."\..\View/home.php";
 
-        $dados = ['title' => 'Anita'];
+        $dados = ['title' => 'Anita',
+            'nome' => 'Joaquim da silva',
+            'cpf' => '49297564801'];
 
         echo $this->view->render("home", $dados);
     }

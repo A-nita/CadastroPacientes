@@ -9,9 +9,25 @@
     <link rel="stylesheet" href= <?=url("/source/View/styles/style.css");?>>
 </head>
 <body>
+<nav class="main_nav">
+<!--    estou herdando uma sidebar??-->
+    <?php if($v->section("sidebar")):
+        echo $v->sectio("sidebar");
+        else:
+        ?>
+        <a title="" href="<?=url() ?>">Home</a>
+        <a title="" href="<?=url() ?>">Cadastrar Paciente</a>
+        <a title="" href="<?=url() ?>">Buscar Paciente</a>
+
+
+        <?php
+
+    endif;?>
+
+</nav>
 
 <main class="main_content">
-    <h1>Teste</h1>
+    <?= $v->section("content") ?>
 </main>
 <footer>
     Grupo 10 - Todos os Direitos Reservados
