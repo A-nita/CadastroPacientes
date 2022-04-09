@@ -1,6 +1,6 @@
 <?php $v->layout("_template");?>
 
-<div>
+<div class="cadastro">
     <form method="post" action="">
         <h1>Cadastro de Paciente</h1>
 
