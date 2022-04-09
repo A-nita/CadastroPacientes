@@ -33,16 +33,22 @@
     padding: 5%;
 }
 
-.users {
+.home {
     display: flex;
     flex-wrap: wrap;
 }
 
-.users_user {
+.home {
     flex-basis: 48%;
     padding: 20px;
     background: #eeeeee;
     margin: 1%;
+}
+
+.home a {
+    border: #2c3e50;
+    text-decoration: none;
+    padding: 20px;
 }
 
 .contact {

@@ -19,6 +19,14 @@ class PacienteConvenio
     {
     }
 
+
+
+
+
+
+
+
+
     /**
      * @return mixed
      */

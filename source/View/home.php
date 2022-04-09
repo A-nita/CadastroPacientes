@@ -1,26 +1,9 @@
 <?php $v->layout("_template");?>
 
-    <label>
-        <input type="text" value="cpf do Paciente">
-    </label>
-<input type="button" value="Buscar">
-
-    <div class="registro">
-        <?php if(!$nome):
-            ?>
-            <p> <?=$nome." Cpf: ".$cpf?></p>
-        <?php
-        else:
-        ?>
-            <p> Usuario não encontrado</p>
-        <?php
-
-        endif;?>
-
-        <input type="button"  value="Visualizar">
-        <input type="button" value="Editar">
-        <input type="button" value="Excluir">
-    </div>
+<div class="home">
+    <a title="" href="<?=url("cadastro");?>">Cadastrar Paciente</a>
+    <a title="" href="<?=url("buscar") ?>">Buscar Paciente</a>
+</div>
 
 
 

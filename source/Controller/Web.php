@@ -24,16 +24,16 @@ class Web
         echo $this->view->render("home", $dados);
     }
 
-    public function cadastrar($data){
-        $url = "http://www.localhost/CadastroPacientes";
-//        require __DIR__."/../View/cadastrar.php";
-
-        $dados = ['title' => 'Grupo 10',
-            'nome' => 'Joaquim da silva',
-            'cpf' => '49297564801'];
-
-        echo $this->view->render("cadastrar", $dados);
-    }
+//    public function cadastrar($data){
+//        $url = "http://www.localhost/CadastroPacientes";
+////        require __DIR__."/../View/cadastro.php";
+//
+//        $dados = ['title' => 'Grupo 10',
+//            'nome' => 'Joaquim da silva',
+//            'cpf' => '49297564801'];
+//
+//        echo $this->view->render("cadastrar", $dados);
+//    }
 
     public function buscar($data){
         $url = "http://www.localhost/CadastroPacientes";

@@ -1,8 +1,9 @@
 <?php $v->layout("_template");?>
 
 <div class="cadastro">
-    <form method="post" action="">
+    <form method="POST" action="<?= url("cadastro"); ?>" enctype="multipart/form-data">
         <h1>Cadastro de Paciente</h1>
+        <h1><?= $msg?></h1>
 
         <div id="obrigatorio">
             <label for="cpf">CPF</label>
@@ -30,30 +31,7 @@
             <input name="ddd" type="text">
             <label for="celular">Celular</label>
             <input name="celular" type="text">
-            <div>
-                <h3>Endereço</h3>
-                <label for="rua">Rua</label>
-                <input name="rua" type="text">
-                <label for="numero">Nº</label>
-                <input name="numero" type="text"><br>
 
-                <label for="complemento">Complemento</label>
-                <input name="complemento" type="text"><br>
-
-                <label for="cidade">Cidade</label>
-                <input name="cidade" type="text">
-
-                <label for="estado">Estado</label>
-                <input name="estado" type="text"><br>
-
-                <label for="cep">CEP</label>
-                <input name="cep" type="text">
-
-
-            </div>
-
-
-        </div>
 
         <div id="convenio">
             <h3>Convênio Médico</h3>
@@ -68,6 +46,10 @@
                 <option value="provida">provida</option>
                 <option value="ami">ami</option>
             </select>
+
+            <label for="vencimento_convenio">validade
+                <input name="vencimento_convenio" type="date">
+            </label><br>
 
         </div>
 
