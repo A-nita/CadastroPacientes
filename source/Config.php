@@ -1,5 +1,5 @@
 <?php
-const URL_BASE = "http://www.localhost/CadastroPacientes";
+const URL_BASE = "http://localhost/CadastroPacientes";
 
 function url(string $uri = null):string
 {
