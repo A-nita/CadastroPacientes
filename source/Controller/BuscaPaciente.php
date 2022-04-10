@@ -20,6 +20,7 @@ class BuscaPaciente
         $this->paciente_convenio = new PacienteConvenio();
         $this->convenio = new Convenio();
     }
+
     public function buscar($data){
         $nome_convenio = $this->convenio->getNome();
         echo $this->view->render("buscar", [
@@ -28,22 +29,26 @@ class BuscaPaciente
             'msg' => ''
         ]);
     }
+
     public function resultadoBusca($data){
         $msg = '';
         $cpf = $data['cpf'];
 
         if(!$cpf){
             $msg = 'CPF não preenchido';
+            echo $this->view->render("buscar", [
+                'title' => "Buscar Paciente",
+                'msg' => $msg
+            ]);
         }
         else{
             $msg = 'Buscando...';
+            echo $this->view->render("visualizar", [
+                'title' => "Paciente",
+                'msg' => $msg,
+                'cpf' => $cpf
+            ]);
         }
-
-
-        echo $this->view->render("buscar", [
-            'title' => "Buscar Paciente",
-            'msg' => $msg
-        ]);
     }
 
 }

@@ -10,6 +10,9 @@ class Connection
     private $dbname;
     private $conn;
 
+    public static $instance;
+
+
     public function __construct () {
         $this->servername = "localhost";
         $this->username = "root";

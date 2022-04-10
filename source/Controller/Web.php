@@ -26,7 +26,7 @@ class Web
 
 //    public function cadastrar($data){
 //        $url = "http://www.localhost/CadastroPacientes";
-////        require __DIR__."/../View/cadastro.php";
+////        require __DIR__."/../View/view_cadastro.php";
 //
 //        $dados = ['title' => 'Grupo 10',
 //            'nome' => 'Joaquim da silva',

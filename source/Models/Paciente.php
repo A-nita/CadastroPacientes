@@ -21,12 +21,12 @@ class Paciente
     // }
 
     public function __construct(){
-        $this->cpf = "";
-        $this->nome = "";
-        $this->dataNascimento = "";
-        $this->sexo = "";
-        $this->telefone = "";
-        $this->nomeSocial = "";
+//        $this->cpf = "";
+//        $this->nome = "";
+//        $this->dataNascimento = "";
+//        $this->sexo = "";
+//        $this->telefone = "";
+//        $this->nomeSocial = "";
     }
 
 
@@ -75,7 +75,7 @@ class Paciente
         }
     }
 
-    public function updatePaciente($conn) {
+    public function updatePaciente($conn):void {
         if(!$conn){
             $msg = "Falha na conexão";
         }
@@ -86,7 +86,7 @@ class Paciente
         }
     }
 
-    public function deletePaciente($conn) {
+    public function deletePaciente($conn):void {
         if(!$conn){
             $msg = "Falha na conexão";
         }
@@ -94,6 +94,33 @@ class Paciente
             $sql = "DELETE FROM paciente WHERE cpf = '".$this->cpf."'";
             $conn->query($sql);
         }
+    }
+
+    public function validaCPF():bool {
+        if (strlen($this->cpf) !== 11 || preg_match('/(\d)\1{10}/', $this->cpf)) {
+            return false;
+        }
+
+        for ($t = 9; $t < 11; $t++) {
+            for ($d = 0, $c = 0; $c < $t; $c++) {
+                $d += $this->cpf[$c] * (($t + 1) - $c);
+            }
+
+            $d = ((10 * $d) % 11) % 10;
+
+            if ($this->cpf[$c] != $d) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function validaCampos():bool {
+        if(!($this->cpf && $this->nome && $this->dataNascimento && $this->sexo && $this->telefone)){
+            return false;
+        }
+        return true;
     }
 
 

@@ -7,6 +7,7 @@ class Convenio
     private $tipoPlano;
     private $abrangenciaAtuacao;
     private $tipoAtendimento;
+    private $lista_convenios;
     //deveria ter um nome do plano né não
     private $nome;
 
@@ -23,6 +24,7 @@ class Convenio
         $this->tipoPlano = "";
         $this->abrangenciaAtuacao = "";
         $this->tipoAtendimento = "";
+        $this->tipoAtendimento = array();
     }
 
 
@@ -42,14 +44,34 @@ class Convenio
         return $msg;
     }
 
+    public function listConvenio( $conn) {
+        if(!$conn){
+            $msg = "Falha na conexão";
+        }
+        else {
+            $sql = "SELECT * FROM Convenio ORDER BY nome";
+            $dados = $conn->query($sql);
 
+            $list = array();
+            if ($dados->num_rows > 0) {
+                // output data of each row
+                while($row = $dados->fetch_assoc()) {
+                    array_push($list, $row["nome"]);
+                }
+                return $list;
+            } else {
+                echo "Convênio não encontrado";
+                return NULL;
+            }
+        }
+    }
 
     public function retrieveTableConvenio($nome, $conn) {
         if(!$conn){
             $msg = "Falha na conexão";
         }
         else {
-            $sql = "SELECT * FROM convenio WHERE nome = '".$nome."'";
+            $sql = "SELECT * FROM convenio";
             $dados = $conn->query($sql);
 
             if ($dados->num_rows > 0) {

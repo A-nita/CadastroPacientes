@@ -1,5 +1,4 @@
-<?php $v->layout("_template");?>
-
+<?php $v->layout("_template"); ?>
 
 <section id="pg-cadastro">
     <div id="formulario">
@@ -8,8 +7,7 @@
             <h1>Cadastro de Paciente</h1>
             <h1><?= $msg?></h1>
             <div id="obrigatorio">
-                <label for="cpf">CPF</label>
-                <input name="cpf" type="text"><br>
+                <p><?= $cpf?>/p>
 
                 <label for="nome">Nome Completo</label>
                 <input name="nome" type="text"><br>

@@ -24,6 +24,7 @@
   "require": {
     "coffeecode/router": "1.0.*",
     "ext-mysqli": "*",
-    "league/plates": "v4.0.0-alpha"
+    "league/plates": "v4.0.0-alpha",
+    "phpunit/phpunit": "9.*"
   }
 }

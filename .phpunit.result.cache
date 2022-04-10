@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Source\\Tests\\ConvenioTest::testListConvenio":3,"Source\\Tests\\PacienteTest::testValidaCampos":4},"times":{"Source\\Tests\\ConvenioTest::testListConvenio":0.026,"Source\\Tests\\PacienteTest::testValidaCPF":0.009,"Source\\Tests\\PacienteTest::testValidaCampos":0.008}}
