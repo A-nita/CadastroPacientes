@@ -13,13 +13,15 @@ $router->namespace("Source\Controller");
 $router->group(null);
 $router->get("/", "Web:home");
 
+//Cadastrar paciente
 $router->group("/cadastro");
 $router->get("/", "Cadastro:cadastro");
 $router->post("/", "Cadastro:cadastrar");
 
-
-
-$router->get("/buscar", "Web:buscar");
+//Buscar paciente
+$router->group("/buscar");
+$router->get("/", "BuscaPaciente:buscar");
+$router->post("/", "BuscaPaciente:resultadoBusca");
 
 //$router->get("/visualizar", "Web:visualizar");
 //$router->get("/excluir", "Web:excluir");

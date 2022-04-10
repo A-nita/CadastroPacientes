@@ -1,15 +1,20 @@
 <?php $v->layout("_template");?>
 
 
-<div class="buscar">
-
-	<form method="post action="">
-		<h1>Buscar de Paciente</h1>
+<section>
+    <div id="formulario">
+        <form method="POST" action="">
+        <h1>Buscar de Paciente</h1>
+            <p><?= $msg ?></p>
 
         <label for="cpf">CPF</label>
-        <input name="cpf" type="text">
-	    <input type="submit" value="Buscar">
+        <input name="cpf" type="text"><br>
 
-	</form>
 
-</div>
+
+        <input type="submit" value="Buscar">
+
+        </form>
+    </div>
+
+</section>

@@ -1,42 +1,34 @@
-<!doctype html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?=$title?></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href=<?=url("source/View/styles/style.css");?>>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
-
 <header>
 
+    <h1>Cadastro de Pacientes</h1>
+
+    <!-- logotipo -->
+    <div id="logo">
+        <a href="<?=url();?>"><img src=<?=url("source/View/styles/home-button.svg");?> alt="home"></a>
+    </div>
+
 </header>
-<nav class="main_nav">
-<!--    estou herdando uma sidebar??-->
-    <?php if($v->section("sidebar")):
-        echo $v->section("sidebar");
-        else:
-        ?>
-        <a title="" href="<?=url() ?>">Home</a>
-        <a title="" href="<?=url("cadastrar");?>">Cadastrar Paciente</a>
-        <a title="" href="<?=url() ?>">Buscar Paciente</a>
-
-
-        <?php
-
-    endif;?>
-
-</nav>
 
 <main class="main_content">
     <!--não mudar-->
     <?= $v->section("content") ?>
 </main>
-<footer class="main_footer">
-    Grupo 10 - Todos os Direitos Reservados
+
+<footer>
+    <p>Grupo 10 - TODOS OS DIREITOS RESERVADOS</p>
 </footer>
 </body>
 </html>
