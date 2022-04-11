@@ -9,16 +9,16 @@
             <h1><?= $msg?></h1>
             <div id="obrigatorio">
                 <label for="cpf">CPF</label>
-                <input name="cpf" type="text"><br>
+                <input name="cpf" type="text" value="<?= $paciente->getCpf()?>"><br>
 
                 <label for="nome">Nome Completo</label>
-                <input name="nome" type="text"><br>
+                <input name="nome" type="text" value="<?= $paciente->getNome()?>"><br>
 
                 <label for="nome_social">Nome Social</label>
-                <input name="nome_social" type="text"><br>
+                <input name="nome_social" type="text" value="<?= $paciente->getNomeSocial()?>"><br>
 
                 <label for="data_nascimento">Data de nascimento</label>
-                <input name="data_nascimento" type="date">
+                <input name="data_nascimento" type="date" value="<?= $paciente->getDataNascimento()?>"><br>
 
                 <div id="sexo">
                     <p>Sexo:</p>
@@ -32,52 +32,33 @@
                 <label for="ddd">DDD</label>
                 <input name="ddd" type="text" id="input-menor">
                 <label for="celular">Celular</label>
-                <input name="celular" type="text">
-                <div>
-                    <h3>Endereço</h3>
-                    <label for="rua">Rua</label>
-                    <input name="rua" type="text">
-                    <label for="numero">Nº</label>
-                    <input name="numero" type="text" id="input-menor"><br>
+                <input name="celular" type="text" value="<?= $paciente->getCpf()?>">
 
-                    <label for="complemento">Complemento</label>
-                    <input name="complemento" type="text"><br>
-
-                    <label for="cidade">Cidade</label>
-                    <input name="cidade" type="text">
-
-                    <label for="estado">Estado</label>
-                    <input name="estado" type="text" id="input-menor"><br>
-
-                    <label for="cep">CEP</label>
-                    <input name="cep" type="text">
-
-
-                </div>
-
-
-            </div>
 
             <div id="convenio">
                 <h3>Convênio Médico</h3>
                 <label for="convenio">Nome do convênio</label>
-                <input name="convenio" type="text"><br>
+                <input name="convenio" type="text" value="<?= $paciente_convenio->getConvenio()?>"><br>
 
                 <label for="n_convenio">Número do Convênio</label>
                 <input name="n_convenio" type="text"><br>
 
-                <select name="Convenio" id="fodae">
-                    <option value="unimed">unimed</option>
-                    <option value="provida">provida</option>
-                    <option value="ami">ami</option>
-                </select>
+                <select name="Convenio" id="fodae" value="<?= $paciente_convenio->getConvenio()?>">
+                    <option><?= $paciente_convenio->getConvenio()?></option>
+                    <?php
+                    foreach($convenio as $c):
+                        if ($paciente_convenio->getConvenio() != $c):
+                            ?><option><?= $c?></option>
+                        <?php endif;
+                    endforeach ?>
+
+                </select> <br>
 
             </div>
 
 
-            <input type="submit" value="Cadastrar">
+            <input type="submit" value="Salvar">
 
         </form>
-
     </div>
 </section>

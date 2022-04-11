@@ -35,9 +35,9 @@ $router->post("/", "BuscaPaciente:resultadoBusca");
 $router->group("/excluir");
 $router->post("/", "Excluir:excluir");
 
-//$router->get("/visualizar", "Web:visualizar");
-//$router->get("/excluir", "Web:excluir");
-//$router->get("/editar", "Web:editar");
+$router->group("/editar");
+$router->get("/", "Editar:getEditar");
+$router->post("/", "Editar:postEditar");
 
 $router->dispatch();
 
