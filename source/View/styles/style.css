@@ -1,59 +1,71 @@
 :root {
     --titulo-da-pagina: 20px;
     --font-size-buttons: 25px;
+    /*--cor-do-background: rgb(151, 181, 228);*/
     --cor-do-background: #FAFAFA;
-    --cor-formulário: white;
-    --cor-header:  #C9F0E1;
-    --cor-footer:  #EEEEEE;
-    --background-color-buttons: purple;
-    --cor-texto-formulario: black;
+    --background-color-buttons: red;
+    --cor-texto-formulario: white;
     --fonte: 'Nunito', Helvetica, sans serifa;
-
-}
-
-
-
-header {
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    background: var(--cor-header);
 }
 
 body {
-    /*background: var(--cor-do-background);*/
+    background-color: var(--cor-do-background);
     font-family:  var(--fonte);
-    align-content: center;
-    margin: 0;
+    margin: 0px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background: #507e99;
+    margin-bottom: 20px;
 }
 
 #logo img {
     width: 50px;
     height: 50px;
-    margin: 7px 20px;
+    padding: 20px;
+    margin: 10px;
+    background: #608ea9;
+    border-radius: 8px;
+    border: 1px solid #000;
+}
+
+#header-txt {
+    padding: 10px;
+}
+
+#logo img:hover {
+    background: #406E89;
 }
 
 section {
     display: flex;
-    justify-content: space-around;
-    background-color: var(--cor-formulário)   ;
-    margin: 0px 0px;
+    justify-content: center;
+    background: #507E99;
+    margin: 0px 30%;
     border-radius: 10px;
+    border: 1px solid #000;
 }
 
 /*início da estilização de seção da home*/
-#pg-home button a {
-    font-size: 20px;
-    text-decoration: none;
-    color: black;
-}
-
 #pg-home button {
     width: 200px;
     height: 75px;
     background-color: var(--background-color-buttons);
     margin: 50px 0px;
     border-radius: 10px;
+}
+
+#pg-home button:hover {
+    background: #d7d7d7;
+}
+
+#pg-home button a {
+    font-size: 20px;
+    padding: 25px 0;
+    text-decoration: none;
+    color: black;
 }
 /*fim da estilização de seção da home*/
 
@@ -62,26 +74,17 @@ section {
 /*inicio da estilização de seção de cadastro*/
 #formulario {
     color: var(--cor-texto-formulario);
-    align-items: end;
-    margin: 20px;
-    padding: 2em;
-    border-radius: 20px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: lightgrey;
-    box-shadow: 3px 3px 5px lightgrey;
-
 }
 #formulario label{
-    margin: 5px;
+
+    margin: 10px;
 }
 #formulario input {
     height: 18px;
     margin: 5px;
     border-radius: 5px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: gray;
+    border:  none;
+    font-size: 15px;
 }
 #input-menor {
     width: 25px;
@@ -97,21 +100,15 @@ section {
 /*fim da estilização de seção de buscar*/
 
 footer {
+    /*Essa porra não ta querendo funfar
+    fizemos gambiarra arrumar isso*/
     display: flex;
     justify-content: center;
+    max-width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    align-self: end;
     font-weight: bold;
-    width: 100%;
-    /*Gambiarra para o footer ficar no final da página*/
-    /*Mudar depois TODO*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*background: var(--cor-footer);*/
-    color: grey;
-    padding: 1em;
-}
-
-
-main{
-    /*width: 40%;*/
-    /*position: center;*/
+    background: #507E99;
+    color: lightgray;
 }

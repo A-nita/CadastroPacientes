@@ -18,7 +18,7 @@ class Connection
         $this->username = "root";
         $this->password = "";
         $this->dbname = "sysexamesmedicos";
-        $this->conn = "";
+
     }
 
     public function getConn() {

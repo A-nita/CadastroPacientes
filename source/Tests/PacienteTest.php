@@ -2,6 +2,7 @@
 
 namespace Source\Tests;
 
+use Source\Models\Connection;
 use Source\Models\Paciente;
 use PHPUnit\Framework\TestCase;
 
@@ -40,5 +41,22 @@ class PacienteTest extends TestCase
         /*Campos Inválidos*/
         $p->setSexo("");
         self::assertFalse($p->validaCampos());
+    }
+
+    public function testInsertPaciente()
+    {
+        $conn = new Connection();
+        $conn->getConn();
+        $p = new Paciente();
+        $p->setCpf("492975648901");
+        $p->setNome("Joca");
+        $p->setSexo("M");
+        $p->setDataNascimento("2002-06-06");
+        $p->setTelefone("32222630");
+        $p->setNomeSocial("jj");
+        $msg = $p->insertPaciente($conn);
+
+        self::assertEquals('Dados inseridos', $msg);
+        $conn->closeConn();
     }
 }

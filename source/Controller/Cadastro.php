@@ -57,26 +57,52 @@ class Cadastro
     public function cadastrar($data){
         $conn = $this->connection->getConn();
         $convenio_list = $this->convenio->listConvenio($conn);
-        $this->connection->closeConn();
+
 
         $msg = '';
-        $nome = $data['nome'];
-        $cpf = $data['cpf'];
-        $nome_social = trim($data['nome_social']);
-        $telefone = trim($data['celular']);
+        $this->nome = $data['nome'];
+        $this->cpf = $data['cpf'];
+        $this->nome_social = $data['nome_social'];
+        $this->telefone = $data['celular'];
+        $this->data_nascimento = $data['data_nascimento'];
+        $this->sexo = $data['sexo'];
 
-        if(!($nome && $cpf && $telefone)){
-            $msg = 'Preencha todos os dados obrigatórios';
+        $this->paciente->setNome($this->nome);
+        $this->paciente->setCpf($this->cpf);
+        $this->paciente->setNomeSocial($this->nome_social);
+        $this->paciente->setTelefone($this->telefone);
+        $this->paciente->setDataNascimento($this->data_nascimento);
+        $this->paciente->setSexo($this->sexo);
+
+        if($this->isValid($msg)) {
+            $this->paciente->insertPaciente($conn);
         }
+//        if(!($nome && $cpf && $telefone)){
+//            $msg = 'Preencha todos os dados obrigatórios';
+//        }
         else{
             $msg = 'Paciente cadastrado com sucesso!';
         }
 
-
+        $this->connection->closeConn();
         echo $this->view->render("view_cadastro", [
             'title' => "Cadastro de Paciente",
-            'convenios' => [$convenio_list],
+            'convenios' => $convenio_list,
             'msg' => $msg
         ]);
+
+
     }
+    public function isValid($msg):bool{
+        if(!$this->paciente->validaCampos()) {
+            $msg = "Preencha todos os campos obrigatórios!";
+            return false;
+        }
+        if(!$this->paciente->validaCPF()) {
+            $msg = "Cpf Inválido!";
+            return false;
+        }
+        return true;
+    }
+
 }
