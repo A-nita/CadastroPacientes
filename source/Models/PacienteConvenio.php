@@ -27,13 +27,14 @@ class PacienteConvenio
             $msg = "Falha na conexão";
         }
         else {
-            $sql = "INSERT INTO paciente_convenio (cpf_paciente, nome_convenio, vencimento_convenio, n_convenio) VALUES ('".$this->getCPF()."','".$this->getConvenio()."','".$this->getDataVencConvenio()."','".$this->getNConvenio()."')";
+            $sql = "INSERT INTO paciente_convenio (cpf_paciente, nome_convenio, vencimento_convenio, n_convenio) VALUES (".$this->getCPF().",'".$this->getConvenio()."','".$this->getDataVencConvenio()."','".$this->getNConvenio()."')";
 
 
             if(mysqli_query($conn, $sql)) {
                 $msg = 'Dados inseridos';
+
             } else {
-                $msg = $sql;
+                $msg =  $conn->error;
             }
         }
         return $msg;

@@ -84,14 +84,14 @@ class Cadastro
         $this->paciente_convenio->setConvenio($this->nome_convenio);
         $this->paciente_convenio->setNConvenio($this->n_convenio);
         $this->paciente_convenio->setDataVencConvenio($this->validade_convenio);
-        $this->paciente_convenio->inserir($conn);
+        $msg = $this->paciente_convenio->inserir($conn);
 
 
         if($this->isValid($msg)) {
             $this->paciente->insertPaciente($conn);
         }
         else{
-            $msg = 'Paciente cadastrado com sucesso!';
+//            $msg = 'Paciente cadastrado com sucesso!';
         }
 
         $this->connection->closeConn();
