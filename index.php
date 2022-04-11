@@ -36,8 +36,10 @@ $router->group("/excluir");
 $router->post("/", "Excluir:excluir");
 
 $router->group("/editar");
-$router->get("/", "Editar:getEditar");
 $router->post("/", "Editar:postEditar");
+
+$router->group("/editado");
+$router->post("/", "Editar:EditarBD");
 
 $router->dispatch();
 

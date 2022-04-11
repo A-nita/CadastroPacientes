@@ -68,14 +68,14 @@ class PacienteConvenio
     }
 
 
-    public function atualizar($conn):void {
+    public function atualizar($conn) {
         if(!$conn){
             $msg = "Falha na conexão";
         }
         else {
-            $sql = "UPDATE paciente_convenio SET cpf_paciente='".$this->getCpf."', nome_convenio='".$this->getConvenio()."', vencimento_convenio='".$this->getDataVencConvenio()."', n_convenio='".$this->getNConvenio()."'  WHERE cpf='".$this->cpf."'";
+            $sql = "UPDATE paciente_convenio SET cpf_paciente='".$this->getCpf()."', nome_convenio='".$this->getConvenio()."', vencimento_convenio='".$this->getDataVencConvenio()."', n_convenio='".$this->getNConvenio()."'  WHERE cpf='".$this->getCpf()."'";
 
-            $up = $conn->query($sql);
+            return $conn->query($sql);
         }
     }
 

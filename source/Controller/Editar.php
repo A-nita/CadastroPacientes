@@ -39,15 +39,40 @@ class Editar
         $this->conn = new Connection();
     }
 
-    public function getEditar($data){
-        $this->paciente->setCpf($data['cpf']);
-        $this->paciente_convenio->setCpf($data['cpf']);
+    public function EditarBD($data){
 
-        $this->paciente->retrievePaciente($this->conn->getConn());
-        $this->paciente_convenio->buscar($this->conn->getConn());
+        $msg = '';
+        $this->nome = $data['nome'];
+        $this->cpf = $data['cpf'];
+        $this->nome_social = $data['nome_social'];
+        $this->telefone = $data['celular'];
+        $this->data_nascimento = $data['data_nascimento'];
+        $this->sexo = $data['sexo'];
 
 
-        echo $this->view->render("editar", [
+
+        $this->nome_convenio = $data["Convenio"];
+        $this->n_convenio = $data["n_convenio"];
+        $this->validade_convenio = $data["val_convenio"];
+
+        $this->paciente->setNome($this->nome);
+        $this->paciente->setCpf($this->cpf);
+        $this->paciente->setNomeSocial($this->nome_social);
+        $this->paciente->setTelefone($this->telefone);
+        $this->paciente->setDataNascimento($this->data_nascimento);
+        $this->paciente->setSexo($this->sexo);
+
+        $this->paciente_convenio->setCpf($this->cpf);
+        $this->paciente_convenio->setConvenio($this->nome_convenio);
+        $this->paciente_convenio->setNConvenio($this->n_convenio);
+        $this->paciente_convenio->setDataVencConvenio($this->validade_convenio);
+
+
+        $this->paciente->updatePaciente($this->conn->getConn());
+        $msg = $this->paciente_convenio->atualizar($this->conn->getConn());
+
+
+        echo $this->view->render("view_sucesso", [
             'title' => "Editar Paciente",
             'convenio' => $this->paciente_convenio,
             'paciente' => $this->paciente,
@@ -71,7 +96,7 @@ class Editar
             'convenio' => $convenio_list,
             'paciente_convenio' => $this->paciente_convenio,
             'paciente' => $this->paciente,
-            'msg' => 'POST'
+            'msg' => ''
         ]);
         $this->conn->closeConn();
     }
