@@ -67,6 +67,12 @@ class Cadastro
         $this->data_nascimento = $data['data_nascimento'];
         $this->sexo = $data['sexo'];
 
+
+
+        $this->nome_convenio = $data["Convenio"];
+        $this->n_convenio = $data["n_convenio"];
+        $this->validade_convenio = $data["val_convenio"];
+
         $this->paciente->setNome($this->nome);
         $this->paciente->setCpf($this->cpf);
         $this->paciente->setNomeSocial($this->nome_social);
@@ -74,12 +80,16 @@ class Cadastro
         $this->paciente->setDataNascimento($this->data_nascimento);
         $this->paciente->setSexo($this->sexo);
 
+        $this->paciente_convenio->setCpf($this->cpf);
+        $this->paciente_convenio->setConvenio($this->nome_convenio);
+        $this->paciente_convenio->setNConvenio($this->n_convenio);
+        $this->paciente_convenio->setDataVencConvenio($this->validade_convenio);
+        $this->paciente_convenio->inserir($conn);
+
+
         if($this->isValid($msg)) {
             $this->paciente->insertPaciente($conn);
         }
-//        if(!($nome && $cpf && $telefone)){
-//            $msg = 'Preencha todos os dados obrigatórios';
-//        }
         else{
             $msg = 'Paciente cadastrado com sucesso!';
         }
