@@ -8,7 +8,7 @@ $router = new Router(url());
 //controller
 $router->namespace("Source\Controller");
 
-//sem grupode urls
+//sem grupo de urls
 //quando for acessado algum desse caminho usaremos as funções  do controller Web
 $router->group(null);
 $router->get("/", "Web:home");

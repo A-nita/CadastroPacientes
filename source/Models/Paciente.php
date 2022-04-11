@@ -2,7 +2,7 @@
 
 namespace Source\Models;
 
-class Paciente
+class   Paciente
 {
     private $cpf;
     private $nome;

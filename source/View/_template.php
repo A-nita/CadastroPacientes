@@ -13,12 +13,12 @@
 <body>
 <header>
 
-    <h1>Cadastro de Pacientes</h1>
-
     <!-- logotipo -->
     <div id="logo">
         <a href="<?=url();?>"><img src=<?=url("source/View/styles/home-button.svg");?> alt="home"></a>
     </div>
+
+    <h1 id="header-txt">Cadastro de Pacientes</h1>
 
 </header>
 
