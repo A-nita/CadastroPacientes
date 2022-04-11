@@ -7,8 +7,10 @@
         <h1>Buscar de Paciente</h1>
             <p><?= $msg ?></p>
 
-        <label for="cpf">CPF</label>
-        <input name="cpf" type="text"><br>
+        <label for="cpf">
+            CPF
+            <input name="cpf" type="text"><br>
+        </label>
 
 
 

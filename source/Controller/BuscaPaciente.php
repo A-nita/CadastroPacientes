@@ -25,10 +25,8 @@ class BuscaPaciente
     }
 
     public function buscar($data){
-        $nome_convenio = $this->convenio->getNome();
         echo $this->view->render("buscar", [
             'title' => "Buscar Paciente",
-            'convenio' => $nome_convenio,
             'msg' => ''
         ]);
     }
@@ -51,8 +49,16 @@ class BuscaPaciente
 //                $msg = "Cpf Inválido";
 //            }
 
-            $this->paciente->retrievePaciente($this->conn->getConn());
+            if(!$this->paciente->retrievePaciente($this->conn->getConn())) {
+                $msg = 'CPF não encontrado';
+                echo $this->view->render("buscar", [
+                    'title' => "Buscar Paciente",
+                    'msg' => $msg
+                ]);
+                return;
+            }
             $this->paciente_convenio->buscar($this->conn->getConn());
+
 
 
 

@@ -133,10 +133,8 @@ class   Paciente
         return $this->cpf;
     }
 
-    /**
-     * @param string $cpf
-     */
-    public function setCpf(string $cpf): void
+
+    public function setCpf($cpf)
     {
         $this->cpf = $cpf;
     }

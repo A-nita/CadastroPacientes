@@ -28,6 +28,13 @@ $router->group("/visualizar");
 $router->get("/", "BuscaPaciente:buscar");
 $router->post("/", "BuscaPaciente:resultadoBusca");
 
+$router->group("/visualizar");
+$router->get("/", "BuscaPaciente:buscar");
+$router->post("/", "BuscaPaciente:resultadoBusca");
+
+$router->group("/excluir");
+$router->post("/", "Excluir:excluir");
+
 //$router->get("/visualizar", "Web:visualizar");
 //$router->get("/excluir", "Web:excluir");
 //$router->get("/editar", "Web:editar");
