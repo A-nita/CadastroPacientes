@@ -3,7 +3,7 @@
 
 <section>
     <div id="formulario">
-        <form method="POST" action="">
+        <form method="POST" action="<?= url("buscar"); ?>">
         <h1>Buscar de Paciente</h1>
             <p><?= $msg ?></p>
 

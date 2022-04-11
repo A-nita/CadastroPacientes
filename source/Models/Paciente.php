@@ -49,16 +49,14 @@ class   Paciente
         return $msg;
     }
 
-    public function retrievePaciente($cpf, $conn) {
+    public function retrievePaciente($conn) {
         if(!$conn){
             $msg = "Falha na conexão";
         }
         else {
-            $sql = "SELECT * FROM paciente WHERE cpf = '".$cpf."'";
-            $dados = $conn->query($sql);
-
-            if ($dados->num_rows > 0) {
-                // output data of each row
+            $sql = "SELECT * FROM paciente WHERE cpf = '".$this->cpf."'";
+            $dados = mysqli_query($conn, $sql);
+            if($dados){
                 while($row = $dados->fetch_assoc()) {
                     $this->setCpf($row["cpf"]);
                     $this->setNome($row["nome"]);
@@ -68,7 +66,8 @@ class   Paciente
                     $this->setNomeSocial($row["nome_social"]);
                     return $this;
                 }
-            } else {
+            }
+            else {
                 echo "Paciente não encontrado";
                 return NULL;
             }

@@ -3,6 +3,7 @@
 namespace Source\Controller;
 
 use League\Plates\Engine;
+use Source\Models\Connection;
 use Source\Models\Convenio;
 use Source\Models\Paciente;
 use Source\Models\PacienteConvenio;
@@ -13,12 +14,14 @@ class BuscaPaciente
     private $paciente;
     private $paciente_convenio;
     private $convenio;
+    private $conn;
     public function __construct()
     {
         $this->view = Engine::create(__DIR__."/../View", "php");
         $this->paciente = new Paciente();
         $this->paciente_convenio = new PacienteConvenio();
         $this->convenio = new Convenio();
+        $this->conn  = new Connection();
     }
 
     public function buscar($data){
@@ -42,12 +45,18 @@ class BuscaPaciente
             ]);
         }
         else{
-            $msg = 'Buscando...';
+            $this->paciente->setCpf($cpf);
+//            if(!$this->paciente->validaCPF()){
+//                $msg = "Cpf Inválido";
+//            }
+            $this->paciente->retrievePaciente($this->conn->getConn());
+
             echo $this->view->render("visualizar", [
                 'title' => "Paciente",
                 'msg' => $msg,
-                'cpf' => $cpf
+                'paciente' => $this->paciente
             ]);
+            $this->conn->closeConn();
         }
     }
 

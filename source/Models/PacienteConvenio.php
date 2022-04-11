@@ -20,7 +20,9 @@ class PacienteConvenio
     }
 
 
+    public function isValid(){
 
+    }
 
     public function inserir($conn){
         if(!$conn){
@@ -38,6 +40,53 @@ class PacienteConvenio
             }
         }
         return $msg;
+    }
+
+    public function buscar($conn) {
+        if(!$conn){
+            $msg = "Falha na conexão";
+        }
+        else {
+            $sql = "SELECT * FROM paciente_convenio WHERE cpf_paciente = '".$this->cpf."'";
+            $dados = $conn->query($sql);
+
+            if ($dados->num_rows > 0) {
+                // output data of each row
+                while($row = $dados->fetch_assoc()) {
+                    $this->setCpf($row["cpf_paciente"]);
+                    $this->setConvenio($row["nome_convenio"]);
+                    $this->setDataVencConvenio($row["vencimento_convenio"]);
+                    $this->setNConvenio($row["n_convenio"]);
+
+                    return $this;
+                }
+            } else {
+                echo "Paciente não encontrado";
+                return NULL;
+            }
+        }
+    }
+
+
+    public function atualizar($conn):void {
+        if(!$conn){
+            $msg = "Falha na conexão";
+        }
+        else {
+            $sql = "UPDATE paciente_convenio SET cpf_paciente='".$this->getCpf."', nome_convenio='".$this->getConvenio()."', vencimento_convenio='".$this->getDataVencConvenio()."', n_convenio='".$this->getNConvenio()."'  WHERE cpf='".$this->cpf."'";
+
+            $up = $conn->query($sql);
+        }
+    }
+
+    public function deletePaciente($conn):void {
+        if(!$conn){
+            $msg = "Falha na conexão";
+        }
+        else{
+            $sql = "DELETE FROM paciente_convenio WHERE cpf = '".$this->cpf."'";
+            $conn->query($sql);
+        }
     }
 
 
