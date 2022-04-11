@@ -3,7 +3,7 @@ require __DIR__ . "/vendor/autoload.php";
 require_once(__DIR__."./source/Config.php");
 
 use CoffeeCode\Router\Router;
-$router = new Router("http://localhost/CadastroPacientes");
+$router = new Router(url());
 
 //controller
 $router->namespace("Source\Controller");
