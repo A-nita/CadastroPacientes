@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?= $title?></title>
     <link rel="stylesheet" href="<?=url("source/View/styles/style.css")?>">
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -18,7 +18,7 @@
         <a href="<?=url();?>"><img src=<?=url("source/View/styles/home-button.svg");?> alt="home"></a>
     </div>
 
-    <h1 id="header-txt">Cadastro de Pacientes</h1>
+    <h1 id="header-txt"><?= $title?></h1>
 
 </header>
 

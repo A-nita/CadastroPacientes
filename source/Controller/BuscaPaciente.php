@@ -40,21 +40,27 @@ class BuscaPaciente
         if(!$cpf){
             $msg = 'CPF não preenchido';
             echo $this->view->render("buscar", [
-                'title' => "Buscar Paciente",
+                'title' => "Resultado Busca",
                 'msg' => $msg
             ]);
         }
         else{
             $this->paciente->setCpf($cpf);
+            $this->paciente_convenio->setCpf($cpf);
 //            if(!$this->paciente->validaCPF()){
 //                $msg = "Cpf Inválido";
 //            }
+
             $this->paciente->retrievePaciente($this->conn->getConn());
+            $this->paciente_convenio->buscar($this->conn->getConn());
+
+
 
             echo $this->view->render("visualizar", [
-                'title' => "Paciente",
+                'title' => "Resultado Busca",
                 'msg' => $msg,
-                'paciente' => $this->paciente
+                'paciente' => $this->paciente,
+                'paciente_convenio' =>$this->paciente_convenio
             ]);
             $this->conn->closeConn();
         }
