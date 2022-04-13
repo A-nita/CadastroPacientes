@@ -62,19 +62,20 @@ class Editar
         $this->paciente->setDataNascimento($this->data_nascimento);
         $this->paciente->setSexo($this->sexo);
 
-        $this->paciente_convenio->setCpf($this->cpf);
-        $this->paciente_convenio->setConvenio($this->nome_convenio);
-        $this->paciente_convenio->setNConvenio($this->n_convenio);
-        $this->paciente_convenio->setDataVencConvenio($this->validade_convenio);
+        $this->paciente_convenio->setCpf($data['cpf']);
+        $this->paciente_convenio->setConvenio($data["Convenio"]);
+        $this->paciente_convenio->setNConvenio($data["n_convenio"]);
+        $this->paciente_convenio->setDataVencConvenio($data["val_convenio"]);
 
-
-        $this->paciente->updatePaciente($this->conn->getConn());
-        $msg = $this->paciente_convenio->atualizar($this->conn->getConn());
+        $please = $this->conn->getConn();
+        $this->paciente->updatePaciente($please);
+        $msg_paciente_convenio = $this->paciente_convenio->atualizar($please);
 
 
         echo $this->view->render("view_sucesso", [
             'title' => "Editar Paciente",
-            'msg' => $msg
+            'msg' => $data["n_convenio"],
+            'msg' => $msg_paciente_convenio
         ]);
         $this->conn->closeConn();
     }

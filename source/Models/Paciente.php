@@ -122,6 +122,28 @@ class   Paciente
         return true;
     }
 
+    public function validaDataNascimento():bool{
+        if($this->dataNascimento < date("Y-m-d")){
+            return true;
+        }
+        return false;
+    }
+
+    public function validaCadastro($conn): string{
+        if(!$this->validaCampos()){
+            return 'Preencha todos os campos obrigaórios!';
+        }
+        if(!$this->validaCPF()){
+            return 'CPF Inválido!';
+        }
+        if($this->retrievePaciente($conn)){
+            return 'Paciente já cadastrado!';
+        }
+        if($this->validaDataNascimento()){
+            return 'Data de nascimento inválida!';
+        }
+        return '';
+    }
 
     /*GETTERS E SETTERS */
 

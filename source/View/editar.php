@@ -34,7 +34,7 @@
             <div id="convenio">
                 <h3>Convênio Médico</h3>
 
-                <label for="nome_convenio">
+                <label for="Convenio">
                     Nome do Convênio
                     <select name="Convenio" id="fodae" value="<?= $paciente_convenio->getConvenio()?>">
                         <option><?= $paciente_convenio->getConvenio()?></option>

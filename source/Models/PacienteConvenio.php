@@ -29,7 +29,7 @@ class PacienteConvenio
             $msg = "Falha na conexão";
         }
         else {
-            $sql = "INSERT INTO paciente_convenio (cpf_paciente, nome_convenio, vencimento_convenio, n_convenio) VALUES (".$this->getCPF().",'".$this->getConvenio()."','".$this->getDataVencConvenio()."','".$this->getNConvenio()."')";
+            $sql = "INSERT INTO paciente_con (cpf_paciente, nome_convenio, vencimento_convenio, n_convenio) VALUES (".$this->getCPF().",'".$this->getConvenio()."','".$this->getDataVencConvenio()."','".$this->getNConvenio()."')";
 
 
             if(mysqli_query($conn, $sql)) {
@@ -47,7 +47,7 @@ class PacienteConvenio
             $msg = "Falha na conexão";
         }
         else {
-            $sql = "SELECT * FROM paciente_convenio WHERE cpf_paciente = '".$this->cpf."'";
+            $sql = "SELECT * FROM paciente_con WHERE cpf_paciente = '".$this->cpf."'";
             $dados = $conn->query($sql);
 
             if ($dados->num_rows > 0) {
@@ -73,7 +73,7 @@ class PacienteConvenio
             $msg = "Falha na conexão";
         }
         else {
-            $sql = "UPDATE paciente_convenio SET cpf_paciente='".$this->getCpf()."', nome_convenio='".$this->getConvenio()."', vencimento_convenio='".$this->getDataVencConvenio()."', n_convenio='".$this->getNConvenio()."'  WHERE cpf='".$this->getCpf()."'";
+            $sql = "UPDATE paciente_con SET nome_convenio = '".$this->convenio."', vencimento_convenio = '".$this->data_venc_convenio."', n_convenio = '".$this->nConvenio."'WHERE cpf_paciente ='".$this->cpf."'";
 
             return $conn->query($sql);
         }
@@ -84,7 +84,7 @@ class PacienteConvenio
             $msg = "Falha na conexão";
         }
         else{
-            $sql = "DELETE FROM paciente_convenio WHERE cpf = '".$this->cpf."'";
+            $sql = "DELETE FROM paciente_con WHERE cpf_paciente = '".$this->getCpf()."'";
             $conn->query($sql);
         }
     }
