@@ -19,21 +19,20 @@ class Excluir
         $this->view = Engine::create(__DIR__."/../View", "php");
         $this->paciente = new Paciente();
         $this->paciente_convenio = new PacienteConvenio();
-        $this->conn  = new Connection();
+        $this->conn = Connection::getInstance();
     }
 
     public function excluir($data){
         $this->paciente->setCpf($data['cpf']);
         $this->paciente_convenio->setCpf($data['cpf']);
 
-        $this->paciente->deletePaciente($this->conn->getConn());
-        $this->paciente_convenio->deletePaciente($this->conn->getConn());
+        $this->paciente->deletar($this->conn);
+        $this->paciente_convenio->deletar($this->conn);
 
 
         echo $this->view->render("excluir", [
             'title' => "Paciente Excluído",
             'msg' => 'Paciente Excluído com sucesso!'
         ]);
-        $this->conn->closeConn();
     }
 }

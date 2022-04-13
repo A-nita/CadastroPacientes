@@ -49,7 +49,7 @@
                 <h3>Convênio Médico</h3>
                 <label for="Convenio">Convênio</label>
                 <select name="Convenio" id="fodae">
-                    <option>Selecione...</option>
+                    <option>Sem Convênio</option>
                     <?php
                     foreach($convenios as $c):
                         ?>

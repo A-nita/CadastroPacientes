@@ -13,7 +13,7 @@ class ConvenioTest extends TestCase
         $conn = new Connection();
 
         $c = new Convenio();
-        $list = $c->listConvenio($conn->getConn());
+        $list = $c->listar($conn->getConn());
         foreach ($list as $conv){
             echo $conv;
         }

@@ -20,8 +20,29 @@ class PacienteConvenio
     }
 
 
-    public function isValid(){
+    public function isValid():string {
+        if(!$this->validaCampos()) {
+//            return "Necessário preencher todos os cmapos relativo aos convênio";
+            return $this->convenio;
+        }
+        if(!$this->validaDataVencimento()) {
+            return "Convênio Vencido!";
+        }
+        return '';
+    }
 
+    private function validaCampos():bool {
+        if(!strlen($this->nConvenio) || !strlen($this->data_venc_convenio)) {
+            return false;
+        }
+        return true;
+    }
+
+    private function validaDataVencimento():bool {
+        if($this->data_venc_convenio < date("Y-m-d")){
+            return true;
+        }
+        return false;
     }
 
     public function inserir($conn){
@@ -67,7 +88,6 @@ class PacienteConvenio
         }
     }
 
-
     public function atualizar($conn) {
         if(!$conn){
             $msg = "Falha na conexão";
@@ -79,7 +99,7 @@ class PacienteConvenio
         }
     }
 
-    public function deletePaciente($conn):void {
+    public function deletar($conn):void {
         if(!$conn){
             $msg = "Falha na conexão";
         }
@@ -88,6 +108,7 @@ class PacienteConvenio
             $conn->query($sql);
         }
     }
+
 
 
 

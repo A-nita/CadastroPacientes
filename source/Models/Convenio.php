@@ -29,7 +29,7 @@ class Convenio
 
 
 
-    public function insertTableConvenio($conn) {
+    public function inserir($conn):string {
         if(!$conn){
             $msg = "Falha na conexão";
         }
@@ -44,7 +44,7 @@ class Convenio
         return $msg;
     }
 
-    public function listConvenio( $conn) {
+    public function listar($conn) {
         if(!$conn){
             $msg = "Falha na conexão";
         }
@@ -66,7 +66,7 @@ class Convenio
         }
     }
 
-    public function retrieveTableConvenio($nome, $conn) {
+    public function buscar($nome, $conn) {
         if(!$conn){
             $msg = "Falha na conexão";
         }

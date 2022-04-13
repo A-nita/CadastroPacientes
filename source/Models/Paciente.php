@@ -21,18 +21,10 @@ class   Paciente
     // }
 
     public function __construct(){
-//        $this->cpf = "";
-//        $this->nome = "";
-//        $this->dataNascimento = "";
-//        $this->sexo = "";
-//        $this->telefone = "";
-//        $this->nomeSocial = "";
+
     }
 
-
-
-
-    public function insertPaciente($conn): string
+    public function inserir($conn): string
     {
         if(!$conn){
             $msg = "Falha na conexão";
@@ -49,7 +41,7 @@ class   Paciente
         return $msg;
     }
 
-    public function retrievePaciente($conn) {
+    public function buscar($conn) {
         if(!$conn){
             $msg = "Falha na conexão";
         }
@@ -74,7 +66,7 @@ class   Paciente
         }
     }
 
-    public function updatePaciente($conn):void {
+    public function atualizar($conn):void {
         if(!$conn){
             $msg = "Falha na conexão";
         }
@@ -85,7 +77,7 @@ class   Paciente
         }
     }
 
-    public function deletePaciente($conn):void {
+    public function deletar($conn):void {
         if(!$conn){
             $msg = "Falha na conexão";
         }
@@ -94,6 +86,7 @@ class   Paciente
             $conn->query($sql);
         }
     }
+
 
     private function validaCPF():bool {
         $this->limpaCpf();
@@ -123,30 +116,30 @@ class   Paciente
         return true;
     }
 
-    private function validaDataNascimento():bool{
+    private function validaDataNascimento():bool {
         if($this->dataNascimento > date("Y-m-d")){
             return true;
         }
         return false;
     }
 
-    private function limpaTelefone(): string{
+    private function limpaTelefone():string {
         $this->telefone = trim($this->telefone, " ()-");
         return $this->telefone;
     }
 
-    private function limpaCpf(): string{
+    private function limpaCpf():string {
         $this->cpf = trim($this->cpf, " -.");
         return $this->cpf;
     }
 
-    private function limpaNome(): string{
+    private function limpaNome():string {
         $this->nome = rtrim($this->nome, "\t\n\r\0\x0B");
         $this->nome = ltrim($this->nome, "\t\n\r\0\x0B");
         return $this->nome;
     }
 
-    private function validaTelefone():bool{
+    private function validaTelefone():bool {
         $this->limpaTelefone();
         if(strlen($this->telefone) == 11){
             return true;
@@ -154,7 +147,7 @@ class   Paciente
         return false;
     }
 
-    public function validaCadastro($conn): string{
+    public function isValid($conn):string {
         $this->limpaNome();
         if(!$this->validaCampos()) {
             return 'Preencha todos os campos obrigaórios!';
@@ -162,7 +155,7 @@ class   Paciente
         if(!$this->validaCPF()) {
             return 'CPF Inválido!';
         }
-        if($this->retrievePaciente($conn)) {
+        if($this->buscar($conn)) {
             return 'Paciente já cadastrado!';
         }
         if($this->validaDataNascimento()) {

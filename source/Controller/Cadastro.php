@@ -31,22 +31,18 @@ class Cadastro
     private $n_convenio;
     private $validade_convenio;
 
-
-
-
     public function __construct()
     {
         $this->view = Engine::create(__DIR__."/../View", "php");
         $this->paciente = new Paciente();
         $this->paciente_convenio = new PacienteConvenio();
         $this->convenio = new Convenio();
-        $this->connection = new Connection();
+        $this->conn = Connection::getInstance();
     }
 
     public function cadastro($data){
-        $conn = $this->connection->getConn();
-        $convenio_list = $this->convenio->listConvenio($conn);
-        $this->connection->closeConn();
+        $convenio_list = $this->convenio->listar($this->conn);
+
         echo $this->view->render("view_cadastro", [
             'title' => "Cadastro de Paciente",
             'convenios' => $convenio_list,
@@ -55,11 +51,27 @@ class Cadastro
     }
 
     public function cadastrar($data){
-        $conn = $this->connection->getConn();
-        $convenio_list = $this->convenio->listConvenio($conn);
+        $convenio_list = $this->convenio->listar($this->conn);
 
 
-        $msg = '';
+        $this->setAtributes($data);
+        $this->preenchePaciente();
+        $this->preenchePacienteConvenio();
+        $msg = $this->validaCadastro();
+        if(!strlen($msg)) {
+            $this->paciente->inserir($this->conn);
+            $this->paciente_convenio->inserir($this->conn);
+            $msg = "Paciente Cadastrado com Sucesso";
+        }
+        echo $this->view->render("view_cadastro", [
+            'title' => "Cadastro de Paciente",
+            'convenios' => $convenio_list,
+            'msg' => $msg
+        ]);
+    }
+
+    private function setAtributes($data):void {
+        //Paciente
         $this->nome = $data['nome'];
         $this->cpf = $data['cpf'];
         $this->nome_social = $data['nome_social'];
@@ -67,55 +79,45 @@ class Cadastro
         $this->data_nascimento = $data['data_nascimento'];
         $this->sexo = $data['sexo'];
 
-
-
-        $this->nome_convenio = $data["Convenio"];
+        //Convenio do Paciente
+        if($data["Convenio"] == "Sem Convênio"){
+            $this->nome_convenio = '';
+        }
         $this->n_convenio = $data["n_convenio"];
         $this->validade_convenio = $data["val_convenio"];
+    }
 
+    private function preenchePaciente():void {
         $this->paciente->setNome($this->nome);
         $this->paciente->setCpf($this->cpf);
         $this->paciente->setNomeSocial($this->nome_social);
         $this->paciente->setTelefone($this->telefone);
         $this->paciente->setDataNascimento($this->data_nascimento);
         $this->paciente->setSexo($this->sexo);
+    }
 
+    private function preenchePacienteConvenio():void {
         $this->paciente_convenio->setCpf($this->cpf);
         $this->paciente_convenio->setConvenio($this->nome_convenio);
         $this->paciente_convenio->setNConvenio($this->n_convenio);
         $this->paciente_convenio->setDataVencConvenio($this->validade_convenio);
-
-
-        $msg = $this->paciente->validaCadastro($conn);
-        if(strlen($msg) == 0){
-            $this->paciente->insertPaciente($conn);
-            $this->paciente_convenio->inserir($conn);
-            $msg = "Paciente Cadastrado com Sucesso";
-
-        }
-
-
-
-
-        $this->connection->closeConn();
-        echo $this->view->render("view_cadastro", [
-            'title' => "Cadastro de Paciente",
-            'convenios' => $convenio_list,
-            'msg' => $msg
-        ]);
-
-
     }
-    public function isValid($msg):bool{
-        if(!$this->paciente->validaCampos()) {
-            $msg = "Preencha todos os campos obrigatórios!";
-            return false;
+
+    private function validaCadastro():string {
+
+        $msg_erro = $this->paciente->isValid($this->conn);
+        if(strlen($msg_erro)) {
+            return $msg_erro;
         }
-        if(!$this->paciente->validaCPF()) {
-            $msg = "Cpf Inválido!";
-            return false;
+        //verificamos se algum convenio foi selecionado para cadastro
+        if(strlen($this->paciente_convenio->getConvenio())) {
+            $msg_erro = $this->paciente_convenio->isValid();
+            if(strlen($msg_erro)) {
+                return $msg_erro;
+            }
         }
-        return true;
+
+        return "";
     }
 
 }

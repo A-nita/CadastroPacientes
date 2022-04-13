@@ -36,7 +36,7 @@ class Editar
         $this->paciente = new Paciente();
         $this->paciente_convenio = new PacienteConvenio();
         $this->convenio = new Convenio();
-        $this->conn = new Connection();
+        $this->conn = Connection::getInstance();
     }
 
     public function EditarBD($data){
@@ -67,9 +67,8 @@ class Editar
         $this->paciente_convenio->setNConvenio($data["n_convenio"]);
         $this->paciente_convenio->setDataVencConvenio($data["val_convenio"]);
 
-        $please = $this->conn->getConn();
-        $this->paciente->updatePaciente($please);
-        $msg_paciente_convenio = $this->paciente_convenio->atualizar($please);
+        $this->paciente->atualizar($this->conn);
+        $msg_paciente_convenio = $this->paciente_convenio->atualizar($this->conn);
 
 
         echo $this->view->render("view_sucesso", [
@@ -81,13 +80,12 @@ class Editar
     }
 
     public function postEditar($data){
-        $conn = $this->conn->getConn();
-        $convenio_list = $this->convenio->listConvenio($conn);
+        $convenio_list = $this->convenio->listar($this->conn);
         $this->paciente->setCpf($data['cpf']);
         $this->paciente_convenio->setCpf($data['cpf']);
 
-        $this->paciente->retrievePaciente($this->conn->getConn());
-        $this->paciente_convenio->buscar($this->conn->getConn());
+        $this->paciente->buscar($this->conn);
+        $this->paciente_convenio->buscar($this->conn);
 
 
         echo $this->view->render("editar", [
@@ -97,6 +95,5 @@ class Editar
             'paciente' => $this->paciente,
             'msg' => ''
         ]);
-        $this->conn->closeConn();
     }
 }
