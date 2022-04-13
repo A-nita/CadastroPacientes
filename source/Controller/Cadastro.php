@@ -84,15 +84,18 @@ class Cadastro
         $this->paciente_convenio->setConvenio($this->nome_convenio);
         $this->paciente_convenio->setNConvenio($this->n_convenio);
         $this->paciente_convenio->setDataVencConvenio($this->validade_convenio);
-        $msg = $this->paciente_convenio->inserir($conn);
+
+
+        $msg = $this->paciente->validaCadastro($conn);
+        if(strlen($msg) == 0){
+            $this->paciente->insertPaciente($conn);
+            $this->paciente_convenio->inserir($conn);
+            $msg = "Paciente Cadastrado com Sucesso";
+
+        }
 
 
 
-
-
-//        else{
-//            $msg = 'CPF Inválido';
-//        }
 
         $this->connection->closeConn();
         echo $this->view->render("view_cadastro", [

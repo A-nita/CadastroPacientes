@@ -95,7 +95,8 @@ class   Paciente
         }
     }
 
-    public function validaCPF():bool {
+    private function validaCPF():bool {
+        $this->limpaCpf();
         if (strlen($this->cpf) !== 11 || preg_match('/(\d)\1{10}/', $this->cpf)) {
             return false;
         }
@@ -115,32 +116,60 @@ class   Paciente
         return true;
     }
 
-    public function validaCampos():bool {
+    private function validaCampos():bool {
         if(!($this->cpf && $this->nome && $this->dataNascimento && $this->sexo && $this->telefone)){
             return false;
         }
         return true;
     }
 
-    public function validaDataNascimento():bool{
-        if($this->dataNascimento < date("Y-m-d")){
+    private function validaDataNascimento():bool{
+        if($this->dataNascimento > date("Y-m-d")){
+            return true;
+        }
+        return false;
+    }
+
+    private function limpaTelefone(): string{
+        $this->telefone = trim($this->telefone, " ()-");
+        return $this->telefone;
+    }
+
+    private function limpaCpf(): string{
+        $this->cpf = trim($this->cpf, " -.");
+        return $this->cpf;
+    }
+
+    private function limpaNome(): string{
+        $this->nome = rtrim($this->nome, "\t\n\r\0\x0B");
+        $this->nome = ltrim($this->nome, "\t\n\r\0\x0B");
+        return $this->nome;
+    }
+
+    private function validaTelefone():bool{
+        $this->limpaTelefone();
+        if(strlen($this->telefone) == 11){
             return true;
         }
         return false;
     }
 
     public function validaCadastro($conn): string{
-        if(!$this->validaCampos()){
+        $this->limpaNome();
+        if(!$this->validaCampos()) {
             return 'Preencha todos os campos obrigaórios!';
         }
-        if(!$this->validaCPF()){
+        if(!$this->validaCPF()) {
             return 'CPF Inválido!';
         }
-        if($this->retrievePaciente($conn)){
+        if($this->retrievePaciente($conn)) {
             return 'Paciente já cadastrado!';
         }
-        if($this->validaDataNascimento()){
-            return 'Data de nascimento inválida!';
+        if($this->validaDataNascimento()) {
+            return 'Data de nascimento inválida!' . 'nasceu:' . $this->dataNascimento . 'hj:' . date("Y-m-d");
+        }
+        if($this->validaTelefone()) {
+            return "Formado de celular Inválido: 11991231234";
         }
         return '';
     }
