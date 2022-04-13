@@ -101,7 +101,9 @@ section {
 
 /*inicio da estilização da seção de visualização*/
 
-#pg-visualizar #dados{
+#pg-visualizar {
+    display: flex;
+    justify-content: space-evenly;
     color: white;
 }
 
@@ -109,7 +111,7 @@ section {
     width: 200px;
     height: 75px;
     background-color: var(--background-color-buttons);
-    margin: 50px 0px;
+    margin: 50px 20px;
     border-radius: 10px;
 }
 
@@ -122,6 +124,11 @@ section {
     padding: 25px 0;
     text-decoration: none;
     color: black;
+}
+
+#form-post {
+    display: flex;
+    justify-content: center;
 }
 
 #form-post #label-post {

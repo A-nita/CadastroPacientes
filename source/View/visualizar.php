@@ -26,7 +26,6 @@
         </div>
     </div>
 
-
 </section>
 <form id="form-post" method="POST">
     <label id="label-post" for="cpf">
@@ -35,3 +34,4 @@
     <button formaction="<?= url("editar"); ?>"> Editar </button>
     <button formaction="<?= url("excluir"); ?>"> Excluir </button>
 </form>
+
