@@ -14,9 +14,7 @@ class Web
     }
 
     public function home($data){
-        $dados = ['title' => 'Anita',
-            'nome' => 'Joaquim da silva',
-            'cpf' => '49297564801'];
+        $dados = ['title' => 'Home'];
 
         echo $this->view->render("home", $dados);
     }

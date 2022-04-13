@@ -87,7 +87,7 @@ class Cadastro
         $msg = $this->paciente_convenio->inserir($conn);
 
 
-        if($this->isValid($msg)) {
+        if($this->isValid($msg) && !$this->paciente->retrievePaciente()) {
             $this->paciente->insertPaciente($conn);
         }
         else{
