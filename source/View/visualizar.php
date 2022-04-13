@@ -46,3 +46,10 @@
 
     </div>
 </section>
+<form method="POST">
+    <label id="label-post" for="cpf">
+        <input name="cpf" type="text" value="<?= $paciente->getCpf() ?>"><br>
+    </label>
+    <button formaction="<?= url("editar"); ?>"> Editar </button>
+    <button formaction="<?= url("excluir"); ?>"> Excluir </button>
+</form>
