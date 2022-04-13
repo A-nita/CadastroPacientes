@@ -18,7 +18,7 @@
 
                 <label for="nome">
                     Nome Completo
-                    <input name="nome" type="text"><br>
+                    <input name="nome" type="text" required><br>
                 </label>
 
                 <label for="nome_social">
@@ -28,42 +28,20 @@
 
                 <label for="data_nascimento">
                     Data de nascimento
-                    <input name="data_nascimento" type="date">
+                    <input name="data_nascimento" type="date" required>
                 </label><br>
 
                 <label for="sexo">
                     Sexo:
-                    <label>F</label><input name="sexo" type="radio" required>
-                    <label>M</label><input name="sexo" type="radio">
+                    <input name="sexo" type="radio" value="F" required>F
+                    <input name="sexo" type="radio" value="M">M
                 </label>
 
                 <h3>Contato</h3>
                 <label for="celular">
                     Celular
-                    <input name="celular" type="text">
+                    <input name="celular" type="text" required>
                 </label>
-<!--                <div>-->
-<!--                    <h3>Endereço</h3>-->
-<!--                    <label for="rua">Rua</label>-->
-<!--                    <input name="rua" type="text">-->
-<!--                    <label for="numero">Nº</label>-->
-<!--                    <input name="numero" type="text" id="input-menor"><br>-->
-<!---->
-<!--                    <label for="complemento">Complemento</label>-->
-<!--                    <input name="complemento" type="text"><br>-->
-<!---->
-<!--                    <label for="cidade">Cidade</label>-->
-<!--                    <input name="cidade" type="text">-->
-<!---->
-<!--                    <label for="estado">Estado</label>-->
-<!--                    <input name="estado" type="text" id="input-menor"><br>-->
-<!---->
-<!--                    <label for="cep">CEP</label>-->
-<!--                    <input name="cep" type="text">-->
-<!---->
-<!---->
-<!--                </div>-->
-
 
             </div>
 

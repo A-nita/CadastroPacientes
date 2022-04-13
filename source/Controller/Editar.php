@@ -74,9 +74,7 @@ class Editar
 
         echo $this->view->render("view_sucesso", [
             'title' => "Editar Paciente",
-            'convenio' => $this->paciente_convenio,
-            'paciente' => $this->paciente,
-            'msg' => 'GET'
+            'msg' => $msg
         ]);
         $this->conn->closeConn();
     }

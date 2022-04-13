@@ -3,7 +3,7 @@
     --font-size-buttons: 25px;
     /*--cor-do-background: rgb(151, 181, 228);*/
     --cor-do-background: #FAFAFA;
-    --background-color-buttons: red;
+    --background-color-buttons: white;
     --cor-texto-formulario: white;
     --fonte: 'Nunito', Helvetica, sans serifa;
 }
@@ -99,9 +99,36 @@ section {
 
 /*fim da estilização de seção de buscar*/
 
+/*inicio da estilização da seção de visualização*/
+
+#pg-visualizar #dados{
+    color: white;
+}
+
+#pg-visualizar button, #form-post button {
+    width: 200px;
+    height: 75px;
+    background-color: var(--background-color-buttons);
+    margin: 50px 0px;
+    border-radius: 10px;
+}
+
+#pg-visualisar button:hover, #form-post button:hover {
+    background: #d7d7d7;
+}
+
+#pg-visualizar button a {
+    font-size: 20px;
+    padding: 25px 0;
+    text-decoration: none;
+    color: black;
+}
+
+#form-post #label-post {
+    visibility: hidden;
+}
+
 footer {
-    /*Essa porra não ta querendo funfar
-    fizemos gambiarra arrumar isso*/
     display: flex;
     justify-content: center;
     max-width: 100%;
