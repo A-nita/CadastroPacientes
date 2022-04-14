@@ -62,41 +62,56 @@ class Editar
     }
 
     public function EditarBD($data){
+        $convenio_list = $this->convenio->listar($this->conn);
         $msg = '';
         //recebendo os dados do forms
         $this->setAtributes($data);
         $this->preenchePaciente();
         $this->preenchePacienteConvenio();
-        $this->paciente->atualizar($this->conn);
 
-        //paciente sem convenio
-        if(!$this->paciente_convenio->buscar($this->conn)) {
-            $this->preenchePacienteConvenio();
-            //Cadastrar cpnvenio
-            if(strlen($this->paciente_convenio->getConvenio())> 0) {
-                $msg = $this->paciente_convenio->inserir($this->conn);
-            }
-        }
-        // com convenio ja cadastrado
-        else{
-            $msg = 'Paciente convenio encontrado';
-            //atualizar convenio
-            if(strlen($this->nome_convenio)) {
+        $msg = $this->validaCadastro();
+        if(!strlen($msg)) {
+            $this->paciente->atualizar($this->conn);
+
+            //paciente sem convenio
+            if(!$this->paciente_convenio->buscar($this->conn)) {
                 $this->preenchePacienteConvenio();
-                $msg = 'Atualizar Convenio';
-                $this->paciente_convenio->atualizar($this->conn);
+                //Cadastrar cpnvenio
+                if(strlen($this->paciente_convenio->getConvenio())> 0) {
+                    $msg = $this->paciente_convenio->inserir($this->conn);
+                }
             }
-            //excluir o convenio
+            // com convenio ja cadastrado
             else{
-                $this->paciente_convenio->deletar($this->conn);
-                $msg = 'Apagar Convenio';
+                $msg = 'Paciente convenio encontrado';
+                //atualizar convenio
+                if(strlen($this->nome_convenio)) {
+                    $this->preenchePacienteConvenio();
+                    $msg = 'Dados editados!';
+                    $this->paciente_convenio->atualizar($this->conn);
+                }
+                //excluir o convenio
+                else{
+                    $this->paciente_convenio->deletar($this->conn);
+                    $msg = 'Convênio apagado!';
+                }
             }
-        }
+            echo $this->view->render("view_sucesso", [
+                'title' => "Editar Paciente",
+                'msg' => $msg
+            ]);
 
-        echo $this->view->render("view_sucesso", [
-            'title' => "Editar Paciente",
-            'msg' => $msg,
-        ]);
+            $msg = "Sucesso!";
+        }
+        else{
+            echo $this->view->render("editar", [
+                'title' => "Editar Paciente",
+                'convenio' => $convenio_list,
+                'paciente_convenio' => $this->paciente_convenio,
+                'paciente' => $this->paciente,
+                'msg' => $msg
+            ]);
+        }
     }
 
     private function preenchePaciente():void {
@@ -133,5 +148,21 @@ class Editar
             $this->n_convenio = $data["n_convenio"];
             $this->validade_convenio = $data["val_convenio"];
         }
+    }
+
+    private function validaCadastro():string {
+
+        $msg_erro = $this->paciente->isValid($this->conn);
+        if(strlen($msg_erro)) {
+            return $msg_erro;
+        }
+        //verificamos se algum convenio foi selecionado para cadastro
+        if(strlen($this->paciente_convenio->getConvenio())>0) {
+            $msg_erro = $this->paciente_convenio->isValid();
+            if(strlen($msg_erro)) {
+                return $msg_erro;
+            }
+        }
+        return '';
     }
 }

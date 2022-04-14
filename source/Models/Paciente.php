@@ -152,13 +152,10 @@ class Paciente
     public function isValid($conn):string {
         $this->limpaNome();
         if(!$this->validaCampos()) {
-            return 'Preencha todos os campos obrigaórios!';
+            return 'Preencha todos os campos obrigatórios!';
         }
         if(!$this->validaCPF()) {
             return 'CPF Inválido!';
-        }
-        if($this->buscar($conn)) {
-            return 'Paciente já cadastrado!';
         }
         if(!$this->validaDataNascimento()) {
             return 'Data de nascimento inválida!';

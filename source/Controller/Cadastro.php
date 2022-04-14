@@ -112,6 +112,9 @@ class Cadastro
         if(strlen($msg_erro)) {
             return $msg_erro;
         }
+        if($this->paciente->buscar($this->conn)) {
+            return 'Paciente já cadastrado!';
+        }
         //verificamos se algum convenio foi selecionado para cadastro
         if(strlen($this->paciente_convenio->getConvenio())>0) {
             $msg_erro = $this->paciente_convenio->isValid();
@@ -121,5 +124,4 @@ class Cadastro
         }
         return '';
     }
-
 }
