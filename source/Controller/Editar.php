@@ -68,24 +68,35 @@ class Editar
         $this->paciente->atualizar($this->conn);
         //paciente sem convenio
         if(!$this->paciente_convenio->buscar($this->conn)) {
+            $this->preenchePacienteConvenio();
+
             //adcionou um convenio
-            if(strlen($this->paciente_convenio->getConvenio())) {
-                $this->paciente_convenio->inserir($this->conn);
+            if(strlen($this->paciente_convenio->getConvenio())> 0) {
+                $msg = 'criar convenio';
+                $msg = $this->paciente_convenio->inserir($this->conn);
             }
-            //paciente continua sem convenio
+            else{
+                //paciente continua sem convenio
+                $msg = 'continua_sem_convenio' . $this->paciente_convenio->getConvenio();
+            }
         }
         else{
-            if(strlen($this->paciente_convenio->getConvenio())) {
+            $msg = 'Paciente convenio encontrado';
+
+            if(strlen($this->nome_convenio)) {
+                $this->preenchePacienteConvenio();
+                $msg = 'Atualizar Convenio';
                 $this->paciente_convenio->atualizar($this->conn);
             }
             else{
                 $this->paciente_convenio->deletar($this->conn);
+                $msg = 'Apagar Convenio';
             }
         }
 
         echo $this->view->render("view_sucesso", [
             'title' => "Editar Paciente",
-            'msg' => $data["n_convenio"],
+            'msg' => $msg,
         ]);
     }
 
@@ -115,9 +126,8 @@ class Editar
         $this->sexo = $data['sexo'];
 
         //Convenio do Paciente
-        if($data["Convenio"] == "Sem Convênio"){
-            $this->nome_convenio = '';
-        }
+
+        $this->nome_convenio = $data["Convenio"];
         $this->n_convenio = $data["n_convenio"];
         $this->validade_convenio = $data["val_convenio"];
     }
