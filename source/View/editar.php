@@ -9,7 +9,7 @@
             <h1><?= $msg?></h1>
             <div id="obrigatorio">
                 <label for="cpf">CPF</label>
-                <input name="cpf" type="text" value="<?= $paciente->getCpf()?>" ><br>
+                <input name="cpf" type="text" value="<?= $paciente->getCpf()?>"  readonly><br>
 
                 <label for="nome">Nome Completo</label>
                 <input name="nome" type="text" value="<?= $paciente->getNome()?>"><br>
