@@ -55,6 +55,7 @@ class Cadastro
         $this->setAtributes($data);
         $this->preenchePaciente();
         $this->preenchePacienteConvenio();
+
         $msg = $this->validaCadastro();
         if(!strlen($msg)) {
             $this->paciente->inserir($this->conn);
@@ -81,6 +82,10 @@ class Cadastro
         if($data["Convenio"] == "Sem Convênio"){
             $this->nome_convenio = '';
         }
+        else {
+            $this->nome_convenio = $data["Convenio"];
+        }
+
         $this->n_convenio = $data["n_convenio"];
         $this->validade_convenio = $data["val_convenio"];
     }
@@ -108,14 +113,13 @@ class Cadastro
             return $msg_erro;
         }
         //verificamos se algum convenio foi selecionado para cadastro
-        if(strlen($this->paciente_convenio->getConvenio())) {
+        if(strlen($this->paciente_convenio->getConvenio())>0) {
             $msg_erro = $this->paciente_convenio->isValid();
             if(strlen($msg_erro)) {
                 return $msg_erro;
             }
         }
-
-        return "";
+        return '';
     }
 
 }

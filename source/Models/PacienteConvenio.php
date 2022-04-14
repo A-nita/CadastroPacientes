@@ -22,8 +22,7 @@ class PacienteConvenio
 
     public function isValid():string {
         if(!$this->validaCampos()) {
-//            return "Necessário preencher todos os cmapos relativo aos convênio";
-            return $this->convenio;
+            return "Todos os campos do convênio são obrigatórios!";
         }
         if(!$this->validaDataVencimento()) {
             return "Convênio Vencido!";
@@ -40,9 +39,9 @@ class PacienteConvenio
 
     private function validaDataVencimento():bool {
         if($this->data_venc_convenio < date("Y-m-d")){
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     public function inserir($conn){

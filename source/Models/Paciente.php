@@ -159,11 +159,10 @@ class   Paciente
             return 'Paciente já cadastrado!';
         }
         if(!$this->validaDataNascimento()) {
-            return 'Data de nascimento inválida!' . 'nasceu:' . $this->dataNascimento . 'hj:' . date("Y-m-d");
+            return 'Data de nascimento inválida!';
         }
         if(!$this->validaTelefone()) {
-            return strlen($this->telefone);
-//            return "Formado de celular Inválido: 11991231234";
+            return "Formado de celular Inválido!";
         }
         return '';
     }

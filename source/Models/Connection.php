@@ -14,12 +14,9 @@ class Connection
 
 
     public function __construct () {
-//        $this->servername = "localhost";
-//        $this->username = "root";
-//        $this->password = "root";
-//        $this->dbname = "sysexamesmedicos";
-//        $this->conn = new \mysqli();
+
     }
+
     public static function getInstance() {
         if(!isset(self::$instance)){
             self::$instance = mysqli_connect("localhost", "root", "", "sysexamesmedicos");
@@ -27,14 +24,4 @@ class Connection
 
         return self::$instance;
     }
-
-//    public function getConn() {
-//        $this->conn = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
-//
-//        return $this->conn;
-//    }
-//
-//    public function closeConn() {
-//        mysqli_close($this->conn);
-//    }
 }
