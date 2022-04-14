@@ -117,7 +117,7 @@ class   Paciente
     }
 
     private function validaDataNascimento():bool {
-        if($this->dataNascimento > date("Y-m-d")){
+        if($this->dataNascimento < date("Y-m-d")){
             return true;
         }
         return false;
@@ -158,11 +158,12 @@ class   Paciente
         if($this->buscar($conn)) {
             return 'Paciente já cadastrado!';
         }
-        if($this->validaDataNascimento()) {
+        if(!$this->validaDataNascimento()) {
             return 'Data de nascimento inválida!' . 'nasceu:' . $this->dataNascimento . 'hj:' . date("Y-m-d");
         }
-        if($this->validaTelefone()) {
-            return "Formado de celular Inválido: 11991231234";
+        if(!$this->validaTelefone()) {
+            return strlen($this->telefone);
+//            return "Formado de celular Inválido: 11991231234";
         }
         return '';
     }

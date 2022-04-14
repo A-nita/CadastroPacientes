@@ -50,7 +50,7 @@ class Cadastro
     }
 
     public function cadastrar($data){
-
+        $convenio_list = $this->convenio->listar($this->conn);
         //recebendo os dados do forms
         $this->setAtributes($data);
         $this->preenchePaciente();
