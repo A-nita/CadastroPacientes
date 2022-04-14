@@ -81,7 +81,6 @@ class PacienteConvenio
                     return $this;
                 }
             } else {
-                echo "Paciente não encontrado";
                 return NULL;
             }
         }
