@@ -11,10 +11,10 @@ use Source\Models\PacienteConvenio;
 class Editar
 {
 
-    private $view;
-    private $paciente;
-    private $paciente_convenio;
-    private $convenio;
+    private Engine $view;
+    private Paciente $paciente;
+    private PacienteConvenio $paciente_convenio;
+    private Convenio $convenio;
     private $conn;
 
     /*campos do form de cadastro*/
@@ -39,55 +39,17 @@ class Editar
         $this->conn = Connection::getInstance();
     }
 
-    public function EditarBD($data){
-
-        $msg = '';
-        $this->nome = $data['nome'];
-        $this->cpf = $data['cpf'];
-        $this->nome_social = $data['nome_social'];
-        $this->telefone = $data['celular'];
-        $this->data_nascimento = $data['data_nascimento'];
-        $this->sexo = $data['sexo'];
-
-
-
-        $this->nome_convenio = $data["Convenio"];
-        $this->n_convenio = $data["n_convenio"];
-        $this->validade_convenio = $data["val_convenio"];
-
-        $this->paciente->setNome($this->nome);
-        $this->paciente->setCpf($this->cpf);
-        $this->paciente->setNomeSocial($this->nome_social);
-        $this->paciente->setTelefone($this->telefone);
-        $this->paciente->setDataNascimento($this->data_nascimento);
-        $this->paciente->setSexo($this->sexo);
-
-        $this->paciente_convenio->setCpf($data['cpf']);
-        $this->paciente_convenio->setConvenio($data["Convenio"]);
-        $this->paciente_convenio->setNConvenio($data["n_convenio"]);
-        $this->paciente_convenio->setDataVencConvenio($data["val_convenio"]);
-
-        $this->paciente->atualizar($this->conn);
-        $msg_paciente_convenio = $this->paciente_convenio->atualizar($this->conn);
-
-
-        echo $this->view->render("view_sucesso", [
-            'title' => "Editar Paciente",
-            'msg' => $data["n_convenio"],
-            'msg' => $msg_paciente_convenio
-        ]);
-        $this->conn->closeConn();
-    }
-
     public function postEditar($data){
+        //buscamos as lista de convênios no BD
         $convenio_list = $this->convenio->listar($this->conn);
+
+        //buscamos o paciente e o as info do paciente convenio do BD
         $this->paciente->setCpf($data['cpf']);
         $this->paciente_convenio->setCpf($data['cpf']);
-
         $this->paciente->buscar($this->conn);
         $this->paciente_convenio->buscar($this->conn);
 
-
+        //renderizamos o HTML com as informações
         echo $this->view->render("editar", [
             'title' => "Editar Paciente",
             'convenio' => $convenio_list,
@@ -95,5 +57,68 @@ class Editar
             'paciente' => $this->paciente,
             'msg' => ''
         ]);
+    }
+
+    public function EditarBD($data){
+        $msg = '';
+        //recebendo os dados do forms
+        $this->setAtributes($data);
+        $this->preenchePaciente();
+        $this->preenchePacienteConvenio();
+        $this->paciente->atualizar($this->conn);
+        //paciente sem convenio
+        if(!$this->paciente_convenio->buscar($this->conn)) {
+            //adcionou um convenio
+            if(strlen($this->paciente_convenio->getConvenio())) {
+                $this->paciente_convenio->inserir($this->conn);
+            }
+            //paciente continua sem convenio
+        }
+        else{
+            if(strlen($this->paciente_convenio->getConvenio())) {
+                $this->paciente_convenio->atualizar($this->conn);
+            }
+            else{
+                $this->paciente_convenio->deletar($this->conn);
+            }
+        }
+
+        echo $this->view->render("view_sucesso", [
+            'title' => "Editar Paciente",
+            'msg' => $data["n_convenio"],
+        ]);
+    }
+
+    private function preenchePaciente():void {
+        $this->paciente->setNome($this->nome);
+        $this->paciente->setCpf($this->cpf);
+        $this->paciente->setNomeSocial($this->nome_social);
+        $this->paciente->setTelefone($this->telefone);
+        $this->paciente->setDataNascimento($this->data_nascimento);
+        $this->paciente->setSexo($this->sexo);
+    }
+
+    private function preenchePacienteConvenio():void {
+        $this->paciente_convenio->setCpf($this->cpf);
+        $this->paciente_convenio->setConvenio($this->nome_convenio);
+        $this->paciente_convenio->setNConvenio($this->n_convenio);
+        $this->paciente_convenio->setDataVencConvenio($this->validade_convenio);
+    }
+
+    private function setAtributes($data):void {
+        //Paciente
+        $this->nome = $data['nome'];
+        $this->cpf = $data['cpf'];
+        $this->nome_social = $data['nome_social'];
+        $this->telefone = $data['celular'];
+        $this->data_nascimento = $data['data_nascimento'];
+        $this->sexo = $data['sexo'];
+
+        //Convenio do Paciente
+        if($data["Convenio"] == "Sem Convênio"){
+            $this->nome_convenio = '';
+        }
+        $this->n_convenio = $data["n_convenio"];
+        $this->validade_convenio = $data["val_convenio"];
     }
 }

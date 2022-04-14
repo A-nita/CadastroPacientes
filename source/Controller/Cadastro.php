@@ -8,14 +8,12 @@ use Source\Models\Paciente;
 use Source\Models\PacienteConvenio;
 use Source\Models\Convenio;
 
-
-
 class Cadastro
 {
-    private $view;
-    private $paciente;
-    private $paciente_convenio;
-    private $convenio;
+    private Engine $view;
+    private Paciente $paciente;
+    private PacienteConvenio $paciente_convenio;
+    private Convenio $convenio;
     private $conn;
 
     /*campos do form de cadastro*/
@@ -41,6 +39,7 @@ class Cadastro
     }
 
     public function cadastro($data){
+        //buscamos as lista de convênios no BD
         $convenio_list = $this->convenio->listar($this->conn);
 
         echo $this->view->render("view_cadastro", [
@@ -51,9 +50,8 @@ class Cadastro
     }
 
     public function cadastrar($data){
-        $convenio_list = $this->convenio->listar($this->conn);
 
-
+        //recebendo os dados do forms
         $this->setAtributes($data);
         $this->preenchePaciente();
         $this->preenchePacienteConvenio();

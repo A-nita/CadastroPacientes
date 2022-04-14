@@ -6,18 +6,19 @@
 
         <form method="POST" action="<?= url("cadastro"); ?>" enctype="multipart/form-data">
             <h1>Cadastro de Paciente</h1>
-            <h3><?= $msg ?> </h3>
+            <h3 style="color: lightcoral"><?= $msg ?> </h3>
 
 
 
             <div id="obrigatorio">
+                <p>  (*) Campos Obrigatórios</p>
                 <label for="cpf">
-                    CPF
+                    CPF*
                     <input name="cpf" type="text" required><br>
                 </label>
 
                 <label for="nome">
-                    Nome Completo
+                    Nome Completo*
                     <input name="nome" type="text" required><br>
                 </label>
 
@@ -27,21 +28,23 @@
                 </label>
 
                 <label for="data_nascimento">
-                    Data de nascimento
+                    Data de nascimento*
                     <input name="data_nascimento" type="date" required>
                 </label><br>
 
+                <label for="celular">
+                    Celular*
+                    <input name="celular" type="text" required>
+                </label><br>
+
                 <label for="sexo">
-                    Sexo:
+                    Sexo*:
                     <input name="sexo" type="radio" value="F" required>F
                     <input name="sexo" type="radio" value="M">M
                 </label>
+                <br>
 
-                <h3>Contato</h3>
-                <label for="celular">
-                    Celular
-                    <input name="celular" type="text" required>
-                </label>
+
 
             </div>
 
