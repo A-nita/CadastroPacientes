@@ -43,20 +43,38 @@ class PacienteTest extends TestCase
         self::assertFalse($p->validaCampos());
     }
 
-//    public function testInsertPaciente()
-//    {
-//        $conn = new Connection();
-//        $conn->getConn();
-//        $p = new Paciente();
-//        $p->setCpf("41536921823");
-//        $p->setNome("Joca");
-//        $p->setSexo("M");
-//        $p->setDataNascimento("2002-06-06");
-//        $p->setTelefone("32222630");
-//        $p->setNomeSocial("jj");
-//        $msg = $p->insertPaciente($conn);
-//
-//        self::assertEquals('Dados inseridos', $msg);
-//        $conn->closeConn();
-//    }
+    public function testValidaDataNascimento()
+    {
+        $p = new Paciente();
+
+        /*Data correta*/
+        $p->setDataNascimento("2000-01-27");
+        $this->assertTrue($p->validaDataNascimento());
+
+        /*Data incorreta*/
+        $p->setDataNascimento("27-01-2000");
+        $this->assertFalse($p->validaDataNascimento());
+
+        /*Data incorreta*/
+        $p->setDataNascimento("27-jan-2000");
+        $this->assertFalse($p->validaDataNascimento());
+    }
+
+    public function testValidaTelefone()
+    {
+        $p = new Paciente();
+
+        /*Data correta*/
+        $p->setTelefone("11968520023");
+        $this->assertTrue($p->validaTelefone());
+
+        /*Data incorreta*/
+        $p->setTelefone("68520023");
+        $this->assertFalse($p->validaTelefone());
+
+        /*Data incorreta*/
+        $p->setTelefone("");
+        $this->assertFalse($p->validaTelefone());
+    }
+
 }

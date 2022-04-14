@@ -20,4 +20,19 @@ class ConvenioTest extends TestCase
         $conn->closeConn();
         $this->assertEquals(['nao_eh_a_unimed','Unimed'], $list);
     }
+    public function testBuscar(){
+        $conn = new Connection();
+
+        $c = new Convenio();
+
+        /* Buscar a Unimed */
+        $msg = $c->buscar("Unimed", $conn);
+        $this->assertNotNull($msg);
+
+        /* Buscar um plano de saúde que não existe. */
+        $msg = $c->buscar("UFSCar", $conn);
+        $this->assertNull($msg);
+
+        $conn->closeConn();
+    }
 }
