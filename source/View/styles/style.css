@@ -97,7 +97,7 @@ section {
 
 /*inicio da estilização de seção de view sucesso*/
 
-#view-sucesso {
+#view-sucesso-1, #view-sucesso-2 {
     display: flex;
     justify-content: center;
 }

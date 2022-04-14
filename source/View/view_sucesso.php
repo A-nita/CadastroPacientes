@@ -1,6 +1,8 @@
 <?php $v->layout("_template");?>
-<h2><?= $msg?><h2>
-<!--    Botao Voltar</h2>-->
-<div id="view-sucesso">
-   <button id="botao-voltar"><a href="<?=url("buscar");?>"> Voltar</a></button>
+<div id="view-sucesso-1">
+    <h2><?= $msg?></h2>
+</div>
+<div id="view-sucesso-2">
+    <!--    Botao Voltar</h2>-->
+    <button id="botao-voltar"><a href="<?=url("buscar");?>"> Voltar</a></button>
 </div>
