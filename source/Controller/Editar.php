@@ -3,6 +3,8 @@
 namespace Source\Controller;
 
 use League\Plates\Engine;
+use PhpParser\Error;
+use PHPUnit\Util\Exception;
 use Source\Models\Connection;
 use Source\Models\Convenio;
 use Source\Models\Paciente;
@@ -66,28 +68,25 @@ class Editar
         $this->preenchePaciente();
         $this->preenchePacienteConvenio();
         $this->paciente->atualizar($this->conn);
+
         //paciente sem convenio
         if(!$this->paciente_convenio->buscar($this->conn)) {
             $this->preenchePacienteConvenio();
-
-            //adcionou um convenio
+            //Cadastrar cpnvenio
             if(strlen($this->paciente_convenio->getConvenio())> 0) {
-                $msg = 'criar convenio';
                 $msg = $this->paciente_convenio->inserir($this->conn);
             }
-            else{
-                //paciente continua sem convenio
-                $msg = 'continua_sem_convenio' . $this->paciente_convenio->getConvenio();
-            }
         }
+        // com convenio ja cadastrado
         else{
             $msg = 'Paciente convenio encontrado';
-
+            //atualizar convenio
             if(strlen($this->nome_convenio)) {
                 $this->preenchePacienteConvenio();
                 $msg = 'Atualizar Convenio';
                 $this->paciente_convenio->atualizar($this->conn);
             }
+            //excluir o convenio
             else{
                 $this->paciente_convenio->deletar($this->conn);
                 $msg = 'Apagar Convenio';
