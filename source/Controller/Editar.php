@@ -125,9 +125,13 @@ class Editar
         $this->sexo = $data['sexo'];
 
         //Convenio do Paciente
-
-        $this->nome_convenio = $data["Convenio"];
-        $this->n_convenio = $data["n_convenio"];
-        $this->validade_convenio = $data["val_convenio"];
+        if(array_key_exists("Excluir_convenio", $data )){
+            $this->nome_convenio = "";
+        }
+        else {
+            $this->nome_convenio = $data["Convenio"];
+            $this->n_convenio = $data["n_convenio"];
+            $this->validade_convenio = $data["val_convenio"];
+        }
     }
 }

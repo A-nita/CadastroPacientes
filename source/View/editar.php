@@ -46,7 +46,16 @@
                     endforeach ?>
 
                     </select>
-                </label><br>
+                </label>
+                <?php
+                    if(strlen($paciente_convenio->getConvenio()) > 0): ?>
+                        <label for="Excluir_convenio" style="color: lightcoral" >Excluir convênio</label>
+                        <input name="Excluir_convenio" type="checkbox">
+                <?php else: ?>
+                        <label for="Excluir_convenio" style="visibility: hidden"></label>
+                        <input name="Excluir_convenio" style="visibility: hidden" type="checkbox">
+                <?php endif?>
+                <br>
 
                 <label for="n_convenio">Número do Convênio</label>
                 <input name="n_convenio" type="text" value="<?= $paciente_convenio->getNConvenio()?>"><br>
