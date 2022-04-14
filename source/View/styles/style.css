@@ -95,6 +95,29 @@ section {
 }
 /*fim da estilização de seção de cadastro*/
 
+/*inicio da estilização de seção de view sucesso*/
+
+#view-sucesso {
+    display: flex;
+    justify-content: center;
+}
+
+#botao-voltar {
+    margin: 10px 20px;
+    width: 200px;
+    height: 100px;
+    border-radius: 8px;
+    border: none;
+    background-color: #406E89;
+}
+#botao-voltar a{
+    text-decoration: none;
+    font-family: var(--fonte);
+    font-size: 20px;
+    color: white;
+}
+/*fim da estilização de seção de view sucesso*/
+
 /*inicio da estilização de seção de buscar*/
 
 
